@@ -59,7 +59,6 @@ class Comment
         $this->author = $author;
     }
 
-
     /** Записать дату создания комментария
      * @param DateTime $date - Дата создания комментария
      * @return void
@@ -68,7 +67,6 @@ class Comment
     {
         $this->date = $date;
     }
-
 
     /** Записать новость к которой написан комментарий
      * @param News $news - Данные новости
@@ -96,7 +94,6 @@ class Comment
         $this->mainContent = $mainContent;
     }
 
-
     /** Получить данные пользователя комментария
      * @return User - Данные пользователя
      */
@@ -120,6 +117,4 @@ class Comment
     {
         return $this->news;
     }
-
-
 }

@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Attribute\When;
 #[When(env: 'dev')]
 class NewsService extends AbstractController
 {
-    /**
+    /** Менеджер сущностей
      * @param EntityManagerInterface $entityManager
      */
     public function __construct(

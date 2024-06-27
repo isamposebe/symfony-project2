@@ -32,6 +32,7 @@ class NewsController extends AbstractController
 
         /** Автоматически заполним дату(сейчас) и автора новости */
         $news->setDateCreated(new \DateTime('Now'));
+        /** @var TYPE_NAME $this */
         $news->setAuthor(author: $this->getUser());
 
         /** Создадим форму для новой новости */
@@ -83,6 +84,7 @@ class NewsController extends AbstractController
              * И само сообщение(оно подтягивается через ввод пользователя)
              */
             $comment->setDate(date: new \DateTime('Now'));
+            /** @var TYPE_NAME $this */
             $comment->setAuthor(author: $this->getUser());
             $comment->setNews(news: $news);
 

@@ -35,7 +35,6 @@ class News
     #[ORM\Column(type: 'datetime', nullable: false)]
     private DateTime $dateCreated;
 
-
     /** Получить идентификатор новости
      * @return int - Идентификатор новости
      */

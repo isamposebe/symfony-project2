@@ -44,8 +44,6 @@ class SecurityController extends AbstractController
         return $this->checkUserAuthenticationToRoute($this->getUser());
     }
 
-
-
     /** Выход из авторизации
      * @return Response
      */
