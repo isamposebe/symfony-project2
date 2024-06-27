@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Главная
+{% endblock %}
+
+{% block body %}
+        <h1>Главная</h1>
+
+        <button onclick="window.location='{{ path('app_main') }}'" class="btn" type="submit">
+            Главная
+        </button>
+        <button onclick="window.location='{{ path('app_news_new') }}'" class="btn" type="submit">
+            Добавить новость
+        </button>
+
+        <p>Автор</p>
+        <p>{{ user.username }}</p>
+
+        <button id="buttonSlow" >Скрыть новости от автора</button>
+
+        {# Отоброжение новостей #}
+        {% if newsList is empty %}
+            <p>Новостей пока нет</p>
+        {% else %}
+            <ul>
+                {% for news in newsList %}
+                    {% if news.author.username != user.username %}
+                        <li style="display: none">
+                            <p>{{ news.dateCreated|date('Y-m-d H:i:s') }}</p>
+                            <p>{{ news.author.username }}</p>
+                            <p>{{ news.mainText|slice(0, 50) }}</p>
+                            <a href="{{ path('app_news_show', {'id': news.id}) }}">Читать далее</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <p>{{ news.dateCreated|date('Y-m-d H:i:s') }}</p>
+                        <p>{{ news.author.username }}</p>
+                        <p>{{ news.mainText|slice(0, 50) }}</p>
+                        <a href="{{ path('app_news_show', {'id': news.id}) }}">Читать далее</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    <script>
+        $( "#buttonSlow" ).click(function() {
+            $( "li" )
+                .fadeToggle( "slow", "linear" )
+                .add('href');
+        });
+    </script>
+
+{% endblock %}

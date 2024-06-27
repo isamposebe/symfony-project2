@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Comment{% endblock %}
+
+{% block body %}
+    <h1>Create new Comment</h1>
+
+    {{ include('_form.html.twig') }}
+
+    <a href="{{ path('app_news_show', {'id': id}) }}">Назад к новости</a>
+
+{% endblock %}
