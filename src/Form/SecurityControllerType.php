@@ -51,4 +51,8 @@ class SecurityControllerType extends AbstractType
                 'csrf_protection' => true
             ]);
     }
+    public function getBlockPrefix()
+    {
+        return "";
+    }
 }
