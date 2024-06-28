@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\News;
+use App\Form\NewsType;
+use App\Form\SearchAuthorType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,12 +24,15 @@ class MainController extends AbstractController
         $newsList = $entityManager->getRepository(News::class);
         $newsList = $newsList->findBy([], ['dateCreated' => 'DESC']);
 
+        $formSearchAuthor = $this->createForm(SearchAuthorType::class);
+
         /** Отправляем данные в шаблон
          * @newsList Список новостей
          * @uses Данные пользователя
          */
         return $this->render('main/index.html.twig', [
-            'newsList' => $newsList
+            'newsList' => $newsList,
+            'formSearchAuthor' => $formSearchAuthor
         ]);
     }
 }

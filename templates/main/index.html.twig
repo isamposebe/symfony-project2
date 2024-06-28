@@ -14,11 +14,9 @@
             Добавить новость
         </button>
 
-        <form name="search" action="{% set clicked = true %}">
-            <label for="Автор">Foo</label>
-            <input name="foo" type="text"/>
-        </form>
-    <button class="slowAuthor">Скрыть новости от автора</button>
+    {# Форма добовления комментариея #}
+    {{ include('_form.html.twig', {'form': formSearchAuthor}) }}
+
         {# Отоброжение новостей #}
         {% if newsList is empty %}
             <p>Новостей пока нет</p>
@@ -37,7 +35,7 @@
         {% endif %}
     <script>
         $( ".slowAuthor" ).click(function() {
-            let slowAuthor = $("input:first").val();
+            let slowAuthor = $(".authorText").val();
             $( "li" )
                 .filter(function (){
                     return $( this ).attr( "id" ) === slowAuthor
