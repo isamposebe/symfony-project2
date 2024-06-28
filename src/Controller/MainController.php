@@ -27,8 +27,7 @@ class MainController extends AbstractController
          * @uses Данные пользователя
          */
         return $this->render('main/index.html.twig', [
-            'newsList' => $newsList,
-            'user'=> $this->getUser(),
+            'newsList' => $newsList
         ]);
     }
 }
