@@ -40,6 +40,7 @@ class RegistrationController extends AbstractController
             );
             /** Сохраняю User */
             $entityManager->persist($user);
+
             /** Выполняю запрос к базе данных */
             $entityManager->flush();
 

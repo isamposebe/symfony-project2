@@ -14,7 +14,7 @@
             Добавить новость
         </button>
 
-    {# Форма добовления комментариея #}
+    {# Форма поиска и сокрытие автора #}
     {{ include('_form.html.twig', {'form': formSearchAuthor}) }}
 
         {# Отоброжение новостей #}
@@ -33,7 +33,9 @@
                 {% endfor %}
             </ul>
         {% endif %}
+
     <script>
+        // Поиск автора и сокрытье его
         $( ".slowAuthor" ).click(function() {
             let slowAuthor = $(".authorText").val();
             $( "li" )

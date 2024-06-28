@@ -20,8 +20,10 @@ class SecurityController extends AbstractController
     {
         /** Записываем ошибки если они есть */
         $error = $authenticationUtils->getLastAuthenticationError();
+
         /** Строим форму для ввода Логина и Пароля */
         $form = $this->createForm(SecurityControllerType::class);
+
         /** Проверка на авторизацию пользователя */
         $this->checkUserAuthenticationToRoute($this->getUser());
 

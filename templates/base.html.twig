@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -15,7 +15,6 @@
         <?php include_javascripts() ?>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     </head>
-
 
     <body>
     {# read and display just one flash message type #}
@@ -44,8 +43,6 @@
     {% endfor %}
         {% block body %}
              <h1></h1>
-
         {% endblock %}
-
     </body>
 </html>

@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
 #[Route('/news')]
 class NewsController extends AbstractController
 {
@@ -68,6 +67,7 @@ class NewsController extends AbstractController
      * @param EntityManagerInterface $entityManager Работа с базой данных
      * @return Response
      */
+    #[IsGranted('ROLE_USER')]
     #[Route('/{id}', name: 'app_news_show')]
     public function show(NewsService $newsService, Request $request, News $news, EntityManagerInterface $entityManager): Response
     {
@@ -122,8 +122,10 @@ class NewsController extends AbstractController
     {
         /** Проверяем новость которую надо удалить */
         if ($this->isCsrfTokenValid('delete'.$news->getId(), $request->getPayload()->getString('_token'))) {
+
             /** Запрос на получение всех комментариев по новости */
             $commentRepository = $newsService->listCommentsInNumNews($news);
+
             /** Удаляем все комментарии по новости */
             foreach ($commentRepository as $itemComment) {
                 if ($itemComment -> getNews() == $news) {
@@ -134,6 +136,7 @@ class NewsController extends AbstractController
             $newsService->deleteItem($news);
         }
         $entityManager->flush();
+
         /** Переходим на главную страницу после удаления */
         return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
     }
@@ -148,7 +151,9 @@ class NewsController extends AbstractController
     #[Route("/ajax_comment_delete/", name: 'app_comment_delete')]
     public function deleteComment(Request $request, NewsService $newsService, EntityManagerInterface $entityManager): Response
     {
+        /** Получаем из request ID комментария которого надо удалить */
         $id = $request->get('commentId');
+
         /** @comment Получаем комментарий из базы данных через ID*/
         $comment = $newsService->searchCommentID($id);
 

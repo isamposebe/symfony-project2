@@ -12,6 +12,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SearchAuthorType extends AbstractType
 {
+    /** Форма для поиска и сокрытие автора
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -23,8 +28,7 @@ class SearchAuthorType extends AbstractType
                     new NotBlank([
                         'message' => 'Please enter a field name',
                     ]),
-                ]
-                ])
+                ]])
             ->add('submit', ButtonType::class, [
                 'label' => 'Скрыть новости от автора',
                 'attr' => ['class' => 'slowAuthor']

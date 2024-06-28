@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MainController extends AbstractController
 {
-
     /** Главная страница
      * @param EntityManagerInterface $entityManager Менеджер новостей данных на получения всех новостей
      * @return Response
