@@ -94,9 +94,10 @@
         $('.submit').click(function () {
             let commentId = $(this).attr("id");
             $.ajax({
-                url: 'ajax_comment_delete/' + commentId,
+                url: 'ajax_comment_delete/', // не менял
                 method: 'POST',
                 dataType: 'html',
+                data: {commentId: commentId}, // Отправляю через data
                 success: function (data) {
                     console.log(data);
                     $('tr')

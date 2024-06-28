@@ -139,15 +139,16 @@ class NewsController extends AbstractController
     }
 
     /** Удаление комментария
-     * @param int $id ID комментария
+     * @param Request $request Для получения данных
      * @param NewsService $newsService Работа по новостям
      * @param EntityManagerInterface $entityManager Менеджер сущностей
      * - (Работа над базой данных)
      * @return Response
      */
-    #[Route("/ajax_comment_delete/{id}", name: 'app_comment_delete')]
-    public function deleteComment(int $id, NewsService $newsService, EntityManagerInterface $entityManager): Response
+    #[Route("/ajax_comment_delete/", name: 'app_comment_delete')]
+    public function deleteComment(Request $request, NewsService $newsService, EntityManagerInterface $entityManager): Response
     {
+        $id = $request->get('commentId');
         /** @comment Получаем комментарий из базы данных через ID*/
         $comment = $newsService->searchCommentID($id);
 
