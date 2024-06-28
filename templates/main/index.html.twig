@@ -14,26 +14,19 @@
             Добавить новость
         </button>
 
-        <p>Автор</p>
-        <p>{{ user.username }}</p>
-
-        <button id="buttonSlow" >Скрыть новости от автора</button>
-
+        <form name="search" action="{% set clicked = true %}">
+            <label for="Автор">Foo</label>
+            <input name="foo" type="text"/>
+        </form>
+    <button class="slowAuthor">Скрыть новости от автора</button>
         {# Отоброжение новостей #}
         {% if newsList is empty %}
             <p>Новостей пока нет</p>
         {% else %}
             <ul>
                 {% for news in newsList %}
-                    {% if news.author.username != user.username %}
-                        <li style="display: none">
-                            <p>{{ news.dateCreated|date('Y-m-d H:i:s') }}</p>
-                            <p>{{ news.author.username }}</p>
-                            <p>{{ news.mainText|slice(0, 50) }}</p>
-                            <a href="{{ path('app_news_show', {'id': news.id}) }}">Читать далее</a>
-                        </li>
-                    {% endif %}
-                    <li>
+
+                    <li id="{{ news.author.username }}" >
                         <p>{{ news.dateCreated|date('Y-m-d H:i:s') }}</p>
                         <p>{{ news.author.username }}</p>
                         <p>{{ news.mainText|slice(0, 50) }}</p>
@@ -43,10 +36,13 @@
             </ul>
         {% endif %}
     <script>
-        $( "#buttonSlow" ).click(function() {
+        $( ".slowAuthor" ).click(function() {
+            let slowAuthor = $("input:first").val();
             $( "li" )
-                .fadeToggle( "slow", "linear" )
-                .add('href');
+                .filter(function (){
+                    return $( this ).attr( "id" ) === slowAuthor
+                })
+                .hide();
         });
     </script>
 
