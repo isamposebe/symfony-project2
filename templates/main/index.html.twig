@@ -24,7 +24,7 @@
             <ul>
                 {% for news in newsList %}
 
-                    <li id="{{ news.author.username }}" >
+                    <li data-author="{{ news.author.username }}" >
                         <p>{{ news.dateCreated|date('Y-m-d H:i:s') }}</p>
                         <p>{{ news.author.username }}</p>
                         <p>{{ news.mainText|slice(0, 50) }}</p>
@@ -38,7 +38,7 @@
             let slowAuthor = $(".authorText").val();
             $( "li" )
                 .filter(function (){
-                    return $( this ).attr( "id" ) === slowAuthor
+                    return $( this ).data( "author" ) === slowAuthor
                 })
                 .hide();
         });
