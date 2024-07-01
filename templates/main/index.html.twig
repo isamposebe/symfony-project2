@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block body %}
-        <h1>Главная</h1>
+    <h1>Главная</h1>
 
-        <button onclick="window.location='{{ path('app_main') }}'" class="btn" type="submit">
-            Главная
-        </button>
-        <button onclick="window.location='{{ path('app_news_new') }}'" class="btn" type="submit">
-            Добавить новость
-        </button>
+    <button onclick="window.location='{{ path('app_main') }}'" class="btn" type="submit">
+        Главная
+    </button>
+    <button onclick="window.location='{{ path('app_news_new') }}'" class="btn" type="submit">
+        Добавить новость
+    </button>
 
     {# Форма поиска и сокрытие автора #}
     {{ include('_form.html.twig', {'form': formSearchAuthor}) }}
