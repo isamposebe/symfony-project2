@@ -60,7 +60,7 @@
             {% for comment in commentList %}
                 <tr id="{{ comment.id }}" class="{{ comment.id }}">
                     <th style="display: none" class="id">{{ comment.id }}</th>
-                    <td class="commentListText">{{ comment.mainContent }}</td>
+                     <td class="content">{{ comment.mainContent }}</td>
                     <td>{{ comment.date|date('Y-m-d H:i:s') }}</td>
                     <td>{{ comment.Author.getUsername }}</td>
                     <td><button id ='{{ comment.id }}' class="submit">Удалить</button></td>
@@ -86,8 +86,9 @@
         {# Скрипт для раскаски #}
         $('#colorizeComment').click(function () {
             $('td')
-                .filter('.commentListText')
-                .css("color", "red");
+                .filter('.content')
+                .css("color", "red")
+            ;
         });
 
         {# Отправка POST запроса для удалении комментария #}
