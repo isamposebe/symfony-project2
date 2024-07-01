@@ -53,7 +53,6 @@ class NewsController extends AbstractController
 
         /** Отправляем данные в шаблон создания новой новости
          * @form Форма для отображения новостей
-         * @message Сообщение для хода выполнения
          */
         return $this->render('news/new.html.twig', [
             'newNewsForm' => $form
